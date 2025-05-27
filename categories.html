@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PodWorld - Categories</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎧 PodWorld</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="subscriptions.html">Subscriptions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <h2 class="section-title">📚 Browse by Category</h2>
+
+  <div class="category-bar">
+    <button onclick="filterCategory('All')">All</button>
+    <button onclick="filterCategory('Technology')">Technology</button>
+    <button onclick="filterCategory('Science')">Science</button>
+    <button onclick="filterCategory('Devotional')">Devotional</button>
+    <button onclick="filterCategory('Telugu')">Telugu</button>
+    <button onclick="filterCategory('English')">English</button>
+  </div>
+
+  <section class="podcast-grid" id="podcastContainer">
+    <div class="podcast-card" data-category="Technology English">
+      <h3>Tech Trends</h3>
+      <p>Latest in global tech news.</p>
+      <audio controls src="assets/audio/podcast3.mp3"></audio>
+    </div>
+    <div class="podcast-card" data-category="Devotional Telugu">
+      <h3>Bhakti Moments</h3>
+      <p>Daily devotional podcasts in Telugu.</p>
+      <audio controls src="assets/audio/podcast4.mp3"></audio>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 PodWorld. All rights reserved.
+  </footer>
+
+  <script>
+    function filterCategory(category) {
+      const cards = document.querySelectorAll(".podcast-card");
+      cards.forEach(card => {
+        if (category === "All" || card.dataset.category.includes(category)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PodWorld - Subscriptions</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+  <header>
+    <h1>🎧 PodWorld</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="subscriptions.html">Subscriptions</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <h2 class="section-title">💳 Choose Your Plan</h2>
+
+  <section class="pricing-section">
+    <div class="pricing-card">
+      <h3>Free</h3>
+      <p><strong>$0/month</strong></p>
+      <ul>
+        <li>Access to limited episodes</li>
+        <li>Standard audio quality</li>
+        <li>Ads supported</li>
+      </ul>
+      <button class="subscribe-btn" disabled>Selected</button>
+    </div>
+
+    <div class="pricing-card featured">
+      <h3>Premium</h3>
+      <p><strong>₹399/month</strong></p>
+      <ul>
+        <li>Unlimited podcast access</li>
+        <li>High-quality audio</li>
+        <li>Ad-free experience</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Premium', 39900)">Subscribe</button>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Family</h3>
+      <p><strong>₹799/month</strong></p>
+      <ul>
+        <li>Up to 5 accounts</li>
+        <li>Parental controls</li>
+        <li>Ad-free access</li>
+      </ul>
+      <button class="subscribe-btn" onclick="payNow('Family', 79900)">Subscribe</button>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 PodWorld. All rights reserved.
+  </footer>
+
+  <script>
+    function payNow(plan, amount) {
+      const options = {
+        key: "rzp_test_YourKeyHere", // Replace with your Razorpay Test API Key
+        amount: amount, // in paise (₹399 = 39900 paise)
+        currency: "INR",
+        name: "PodWorld Subscriptions",
+        description: `${plan} Plan Subscription`,
+        image: "https://yourlogo.com/logo.png", // optional
+        handler: function (response) {
+          alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+        },
+        prefill: {
+          name: "Your Name",
+          email: "user@example.com",
+          contact: "9999999999"
+        },
+        notes: {
+          plan_name: plan
+        },
+        theme: {
+          color: "#e52e71"
+        }
+      };
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+  </script>
+</body>
+</html>
